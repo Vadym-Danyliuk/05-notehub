@@ -43,10 +43,6 @@ const App = () => {
     setCurrentPage(selectedItem.selected + 1);
   };
 
-  const handleDeleteNote = (id: string) => {
-    deleteMutation.mutate(id);
-  };
-
   const handleCreateNoteClick = () => {
     setIsModalOpen(true);
   };
@@ -58,6 +54,10 @@ const App = () => {
   const handleNoteCreated = () => {
     queryClient.invalidateQueries({ queryKey: ['notes'] });
     setIsModalOpen(false);
+  };
+
+  const handleDeleteNote = (noteId: string) => {
+    deleteMutation.mutate(noteId);
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -81,7 +81,7 @@ const App = () => {
           className={css.button}
           onClick={handleCreateNoteClick}
         >
-          Create note 🪶
+          Create note +
         </button>
       </header>
 
